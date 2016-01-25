@@ -19,7 +19,10 @@ pl.ion()
 pl.clf()
 
 # Consumer_Complaints.csv from http://catalog.data.gov/dataset/consumer-complaint-database
-df = pd.read_csv('Consumer_Complaints.csv', header=0)
+#df = pd.read_csv('Consumer_Complaints.csv', header=0)
+#df = df.ix[::25]
+#df.to_csv('Consumer_Complaints_short.csv', index=False)
+df = pd.read_csv('Consumer_Complaints_short.csv', header=0)
 
 # Data overview: contents and size
 print df.dtypes
@@ -208,7 +211,8 @@ ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=5, id2word = dicti
 print "\n Topic analysis result for top 25 issues with LDA"
 print(ldamodel.print_topics(num_topics=5, num_words=3))
 
-wordcloud = WordCloud(max_font_size=40).generate(text_view)
+#wordcloud = WordCloud(max_font_size=40).generate(text_view)
+wordcloud = WordCloud().generate(text_view)
 plt.figure()
 plt.title("Top issue words")
 plt.imshow(wordcloud)

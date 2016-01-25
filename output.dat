@@ -1,24 +1,22 @@
-/Users/jhchoi/common/anaconda/lib/python2.7/site-packages/pandas/io/parsers.py:1170: DtypeWarning: Columns (4,5,6,9) have mixed types. Specify dtype option on import or set low_memory=False.
-  data = self._reader.read(nrows)
-ConsumerComplaints_Analy.py:47: SettingWithCopyWarning: 
+ConsumerComplaints_Analy.py:50: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
   df_sub['count'] = 1
-ConsumerComplaints_Analy.py:68: SettingWithCopyWarning: 
+ConsumerComplaints_Analy.py:71: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
   df_sub['count'] = 1
-ConsumerComplaints_Analy.py:112: SettingWithCopyWarning: 
+ConsumerComplaints_Analy.py:115: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
   df_sub['count'] = 1
-ConsumerComplaints_Analy.py:133: SettingWithCopyWarning: 
+ConsumerComplaints_Analy.py:136: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -43,84 +41,84 @@ Timely response?                object
 Consumer disputed?              object
 Complaint ID                     int64
 dtype: object
-459525
+18381
 pearson correlation
-(0.033392958191321875, 1.6441075190375903e-113)
+(0.035372868622995456, 1.6113492655795804e-06)
 
  Top 5 most frequently complained products
-                          count
-Product                        
-Mortgage                 162916
-Debt collection           80482
-Credit reporting          70810
-Credit card               56040
-Bank account or service   52161
+                         count
+Product                       
+Mortgage                  6554
+Debt collection           3273
+Credit reporting          2782
+Credit card               2232
+Bank account or service   2119
 
  Top 5 most frequently complained products which are not Timely responded
                          count
 Product                       
-Debt collection           5286
-Mortgage                  3833
-Bank account or service    582
-Credit card                565
-Consumer loan              311
+Debt collection            226
+Mortgage                   155
+Credit card                 27
+Bank account or service     17
+Consumer loan               14
 
  Top 5 most frequently complained products which are Consumer disputed
                          count
 Product                       
-Mortgage                 38069
-Debt collection          14528
-Credit reporting         11759
-Credit card              11634
-Bank account or service  10344
+Mortgage                  1550
+Debt collection            567
+Credit card                458
+Bank account or service    418
+Credit reporting           415
             Credit reporting  Debt collection  Mortgage
-2011-12-31                 0                0      1289
-2012-12-31              1873                0     38216
-2013-12-31             14389            11075     49431
-2014-12-31             29244            39184     43016
-2015-12-31             25304            30223     30964
+2011-12-31                 0                0        54
+2012-12-31                62                0      1539
+2013-12-31               554              476      2042
+2014-12-31              1191             1564      1695
+2015-12-31               975             1233      1224
 
  Top 10 most frequently complained issues
                                           count
 Issue                                          
-Loan modification,collection,foreclosure  87317
-Incorrect information on credit report    51261
-Loan servicing, payments, escrow account  51014
-Cont'd attempts collect debt not owed     33589
-Account opening, closing, or management   22180
-Communication tactics                     14942
-Deposits and withdrawals                  14295
-Disclosure verification of debt           14136
-Application, originator, mortgage broker  11382
-Billing disputes                           9257
+Loan modification,collection,foreclosure   3510
+Loan servicing, payments, escrow account   2056
+Incorrect information on credit report     2011
+Cont'd attempts collect debt not owed      1373
+Account opening, closing, or management     916
+Communication tactics                       602
+Disclosure verification of debt             565
+Deposits and withdrawals                    553
+Application, originator, mortgage broker    466
+Billing disputes                            381
 
  Top 10 most frequent complained issues which are not Timely responded
                                           count
 Issue                                          
-Cont'd attempts collect debt not owed      1969
-Loan modification,collection,foreclosure   1932
-Loan servicing, payments, escrow account   1137
-Communication tactics                      1040
-Disclosure verification of debt             867
-Taking/threatening an illegal action        517
-False statements or representation          458
-Improper contact or sharing of info         435
-Application, originator, mortgage broker    398
-Account opening, closing, or management     259
+Cont'd attempts collect debt not owed        84
+Loan modification,collection,foreclosure     71
+Loan servicing, payments, escrow account     50
+Communication tactics                        45
+Disclosure verification of debt              41
+Taking/threatening an illegal action         20
+False statements or representation           19
+Application, originator, mortgage broker     18
+Improper contact or sharing of info          17
+Settlement process and costs                  8
 
  Top 10 most frequent complained issues which are Consumer disputed
                                           count
 Issue                                          
-Loan modification,collection,foreclosure  19844
-Loan servicing, payments, escrow account  12231
-Incorrect information on credit report     7693
-Cont'd attempts collect debt not owed      5965
-Account opening, closing, or management    4707
-Disclosure verification of debt            3220
-Application, originator, mortgage broker   3036
-Deposits and withdrawals                   2802
-Credit reporting company's investigation   2104
-Billing disputes                           2025
+Loan modification,collection,foreclosure    815
+Loan servicing, payments, escrow account    503
+Incorrect information on credit report      270
+Cont'd attempts collect debt not owed       224
+Account opening, closing, or management     180
+Disclosure verification of debt             121
+Deposits and withdrawals                    119
+Application, originator, mortgage broker    117
+Communication tactics                        82
+Billing disputes                             79
 
  Topic analysis result for top 25 issues with LDA
-[u'0.076*loan + 0.041*servic + 0.041*payment', u'0.035*money + 0.035*make + 0.035*send', u'0.082*credit + 0.056*report + 0.056*collect', u'0.071*account + 0.071*close + 0.039*problem', u'0.050*ident + 0.050*theft + 0.050*fraud']
+[u'0.061*contact + 0.061*info + 0.061*share', u"0.059*debt + 0.032*collect + 0.032*cont'd", u'0.090*loan + 0.069*credit + 0.047*report', u'0.061*servic + 0.061*unabl + 0.061*problem', u'0.039*close + 0.039*manag + 0.039*payment']

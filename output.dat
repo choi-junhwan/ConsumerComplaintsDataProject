@@ -121,4 +121,4 @@ Communication tactics                        82
 Billing disputes                             79
 
  Topic analysis result for top 25 issues with LDA
-[u'0.061*contact + 0.061*info + 0.061*share', u"0.059*debt + 0.032*collect + 0.032*cont'd", u'0.090*loan + 0.069*credit + 0.047*report', u'0.061*servic + 0.061*unabl + 0.061*problem', u'0.039*close + 0.039*manag + 0.039*payment']
+[u'0.106*credit + 0.081*report + 0.030*unabl', u'0.095*account + 0.065*debt + 0.065*close', u'0.053*servic + 0.053*origin + 0.053*broker', u'0.062*problem + 0.034*loan + 0.034*action', u'0.053*loan + 0.053*payment + 0.053*send']

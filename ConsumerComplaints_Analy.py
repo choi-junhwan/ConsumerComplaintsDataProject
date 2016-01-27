@@ -20,7 +20,7 @@ pl.ion()
 pl.clf()
 
 # Consumer_Complaints.csv from http://catalog.data.gov/dataset/consumer-complaint-database
-df = pd.read_csv('Consumer_Complaints.csv', header=0)
+df = pd.read_csv('../Consumer_Complaints.csv', header=0)
 #df = df.ix[::25]
 #df.to_csv('Consumer_Complaints_short.csv', index=False)
 #df = pd.read_csv('Consumer_Complaints_short.csv', header=0)
@@ -102,7 +102,6 @@ tdf = pd.DataFrame({ Product_List[0] : count_0,
 
 tdf_grp = tdf.groupby(level=0).sum().resample('A', how='sum')
 #xticks = np.arange(2011,2016)
-print tdf_grp
 tdf_grp.plot(kind='bar', stacked=True, title="Top 3 most complained Products", rot=10)
 
 fig = plt.gcf()
@@ -112,9 +111,6 @@ pl.clf()
 
 ###################
 # Complained Issues
-for i in range(0,len(df.index)):
-    print
-
 df_sub = df[['Issue']]
 df_sub.insert(0, 'count', 1)
 df_sub_grp = df_sub.groupby(['Issue']).sum().sort_index(by='count', ascending=False).ix[0:10]

@@ -224,7 +224,7 @@ td2 = pd.Series(CountDisp2, index=DateList)
 td2_grp = td2.groupby(level=0).sum().resample('A', how='sum')
 
 
-fig = plt.figure(figsize=(25,7))
+fig = plt.figure(figsize=(23,8))
 fig1 = fig.add_subplot(1,3,1)
 fig2 = fig.add_subplot(1,3,2)
 fig3 = fig.add_subplot(1,3,3)
@@ -234,29 +234,37 @@ fig1.bar(ts0_grp.index,ts0_grp,label='%s' % Issue_List[0],color="red",width=100)
 fig1.bar(ts1_grp.index,ts1_grp,label='%s' % Issue_List[1],color="blue",bottom=ts0_grp,width=100)
 fig1.bar(ts2_grp.index,ts2_grp,label='%s' % Issue_List[2],color="green",bottom=(ts1_grp+ts0_grp),width=100)
 fig1.legend(loc=2, prop={'size':10})
-fig1.set_title('Number of Complaints per year')
-fig1.set_ylabel('Number of Complaints')
-fig1.xaxis.set_major_formatter(DateFormatter('%b %y'))
-fig1.set_xlabel('Date')
+fig1.set_title('Number of Complaints per year', fontsize=20)
+fig1.set_ylabel('Number of Complaints', fontsize=15)
+fig1.xaxis.set_major_formatter(DateFormatter('%b %Y'))
+fig1.set_xlabel('Date',fontsize=15)
+
 
 fig2.plot(ts0_grp.index,tr0_grp/ts0_grp,label='%s' % Issue_List[0],color="red")
 fig2.plot(ts1_grp.index,tr1_grp/ts1_grp,label='%s' % Issue_List[1],color="blue")
 fig2.plot(ts2_grp.index,tr2_grp/ts2_grp,label='%s' % Issue_List[2],color="green")
 fig2.legend(loc=0, prop={'size':10})
-fig2.set_title('NOT Timely responded rate')
-fig2.set_ylabel('Rate %')
-fig2.xaxis.set_major_formatter(DateFormatter('%b %y'))
-fig2.set_xlabel('Date')
+fig2.set_title('NOT Timely responded rate',fontsize=20)
+fig2.set_ylabel('Rate',fontsize=15)
+fig2.xaxis.set_major_formatter(DateFormatter('%b %Y'))
+fig2.set_xlabel('Date',fontsize=15)
+plt.xticks(rotation=30)
 
 fig3.plot(ts0_grp.index,td0_grp/ts0_grp,label='%s' % Issue_List[0],color="red")
 fig3.plot(ts1_grp.index,td1_grp/ts1_grp,label='%s' % Issue_List[1],color="blue")
 fig3.plot(ts2_grp.index,td2_grp/ts2_grp,label='%s' % Issue_List[2],color="green")
 fig3.legend(loc=0, prop={'size':10})
-fig3.set_title('Consumer disputed rate')
-fig3.set_ylabel('Rate %')
-fig3.xaxis.set_major_formatter(DateFormatter('%b %y'))
-fig3.set_xlabel('Date')
+fig3.set_title('Consumer disputed rate',fontsize=20)
+fig3.set_ylabel('Rate',fontsize=15)
+fig3.xaxis.set_major_formatter(DateFormatter('%b %Y'))
+fig3.set_xlabel('Date',fontsize=15)
 
+matplotlib.pyplot.sca(fig1)
+plt.xticks(rotation=20)
+matplotlib.pyplot.sca(fig2)
+plt.xticks(rotation=20)
+matplotlib.pyplot.sca(fig3)
+plt.xticks(rotation=20)
 
 plt.savefig('ComplainCount')
 pl.clf()
@@ -294,13 +302,34 @@ corpus = [dictionary.doc2bow(text) for text in texts]
 
 # generate LDA model
 ldamodel = gensim.models.ldamodel.LdaModel(corpus, num_topics=5, id2word = dictionary, passes=20)
+LDAText =  ldamodel.print_topics(num_topics=5, num_words=3)
 print "\n Topic analysis result for top 25 issues with LDA"
-print(ldamodel.print_topics(num_topics=5, num_words=3))
+print(LDAText)
 
-#wordcloud = WordCloud(max_font_size=40).generate(text_view)
 wordcloud = WordCloud().generate(text_view)
-plt.figure()
-plt.title("Top issue words")
-plt.imshow(wordcloud)
-plt.axis("off")
+fig = plt.figure(figsize=(15,8))
+fig1 = fig.add_subplot(1,2,1)
+fig1.set_title('5 Issue Topics from LDA Topic Modeling',fontdict={'fontsize':25})
+fig1.text(0.5, 0.9, LDAText[0], size=15, rotation=0.,
+          ha="center", va="center",
+          bbox=dict(boxstyle="round", ec=(1., 0.5, 0.5), fc=(1., 0.8, 0.8),))
+fig1.text(0.5, 0.75, LDAText[1], size=15, rotation=0.,
+          ha="center", va="center",
+          bbox=dict(boxstyle="round", ec=(1., 0.5, 0.5), fc=(1., 0.8, 0.8),))
+fig1.text(0.5, 0.6, LDAText[2], size=15, rotation=0.,
+          ha="center", va="center",
+          bbox=dict(boxstyle="round", ec=(1., 0.5, 0.5), fc=(1., 0.8, 0.8),))
+fig1.text(0.5, 0.45, LDAText[3], size=15, rotation=0.,
+          ha="center", va="center",
+          bbox=dict(boxstyle="round", ec=(1., 0.5, 0.5), fc=(1., 0.8, 0.8),))
+fig1.text(0.5, 0.3, LDAText[4], size=15, rotation=0.,
+          ha="center", va="center",
+          bbox=dict(boxstyle="round", ec=(1., 0.5, 0.5), fc=(1., 0.8, 0.8),))
+fig1.axis('off')
+
+fig2 = fig.add_subplot(1,2,2)
+fig2.set_title("Top issue words", fontdict={'fontsize':25})
+fig2.imshow(wordcloud)
+fig2.axis("off")
+
 plt.savefig('ComplainCount_WC')

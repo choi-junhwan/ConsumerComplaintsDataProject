@@ -93,4 +93,4 @@ Credit reporting company's investigation   2104
 Billing disputes                           2025
 
  Topic analysis result for top 25 issues with LDA
-[u'0.044*problem + 0.044*manag + 0.044*caus', u'0.078*account + 0.054*payment + 0.054*close', u'0.044*loan + 0.044*contact + 0.044*share', u'0.089*credit + 0.061*report + 0.061*unabl', u"0.046*debt + 0.046*collect + 0.046*cont'd"]
+[u'0.107*credit + 0.073*report + 0.040*unabl', u'0.038*payment + 0.037*send + 0.037*make', u'0.055*servic + 0.030*debt + 0.030*attempt', u'0.052*problem + 0.052*account + 0.052*close', u'0.038*loan + 0.038*manag + 0.038*collect']

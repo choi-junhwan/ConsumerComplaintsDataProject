@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Consumer Complaint</title>
+    <h1>Generated plots for {{name}}<br><a href="/index">Back</a></h1>
+    <div class='matplotlib'>
+      <img src="static/temp/{{plotPng}}">
+      <a href="/index"><font size=+1>Back.
+    </div>
+  </body>
+  </html>

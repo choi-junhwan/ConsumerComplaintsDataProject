@@ -5,6 +5,8 @@ nltk
 stop-words
 #gensim
 wordcloud 
+requests
+matplotlib
 bokeh==0.11.0
 dill==0.2.1
 Flask==0.10.1

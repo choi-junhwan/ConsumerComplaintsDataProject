@@ -5,7 +5,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter
-import pylab as pl
+#import pylab as pl
 from wordcloud import WordCloud
 #from scipy.stats.stats import pearsonr
 from nltk.tokenize import RegexpTokenizer

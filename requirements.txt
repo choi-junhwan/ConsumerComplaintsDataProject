@@ -3,7 +3,7 @@ numpy
 pandas
 nltk
 stop-words
-gensim
+#gensim
 wordcloud 
 bokeh==0.11.0
 dill==0.2.1

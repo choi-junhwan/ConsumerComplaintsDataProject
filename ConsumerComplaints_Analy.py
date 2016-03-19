@@ -11,8 +11,8 @@ from wordcloud import WordCloud
 from nltk.tokenize import RegexpTokenizer
 from nltk.stem.porter import PorterStemmer
 from stop_words import get_stop_words
-from gensim import corpora, models
-import gensim
+#from gensim import corpora, models
+#import gensim
 import tempfile
 
 
@@ -31,11 +31,11 @@ def data_wrangling(df):
 
     return df
 
+#def Pearson_Correlation(df):
+    """
+    Pearson's Correlation between Response and Disputed rate.
+    """
 """
-def Pearson_Correlation(df):
-    """
-    Compute Pearson's Correlation between Response and Disputed rate.
-    """
     corr   = df[['Response','Disputed']]
     test_x = corr['Response'].values
     test_y = corr['Disputed'].values
@@ -284,11 +284,12 @@ def top_complained_issues(df):
     return plotPng
 
 
-def text_analysis(df):
+#def text_analysis(df):
     """
     Text analysis for top issuess with LDA
     Initialize text 
     """
+"""
     #Complained Issues
     # More analysis with top issues
     df_sub = df[['Issue']]
@@ -364,6 +365,7 @@ def text_analysis(df):
     f.close()
     plotPng = f.name.split('/')[-1]
     return plotPng
+"""
 
 if __name__=="__main__":
     df = pd.read_csv('Consumer_Complaints_short.csv', header=0)

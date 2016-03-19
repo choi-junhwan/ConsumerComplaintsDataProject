@@ -8,11 +8,12 @@
 *.so
 *.pyc
 
-
-# temp figure file #
+# temp files         #
 ######################
+*~
 static/temp/*png
-
+static/*~
+templates/*~
 
 # Logs and databases #
 ######################

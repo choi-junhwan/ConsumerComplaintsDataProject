@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter
 import pylab as pl
 from wordcloud import WordCloud
-from scipy.stats.stats import pearsonr
+#from scipy.stats.stats import pearsonr
 from nltk.tokenize import RegexpTokenizer
 from nltk.stem.porter import PorterStemmer
 from stop_words import get_stop_words
@@ -31,6 +31,7 @@ def data_wrangling(df):
 
     return df
 
+"""
 def Pearson_Correlation(df):
     """
     Compute Pearson's Correlation between Response and Disputed rate.
@@ -39,6 +40,7 @@ def Pearson_Correlation(df):
     test_x = corr['Response'].values
     test_y = corr['Disputed'].values
     return pearsonr(test_x, test_y)
+"""
 
 def top_complained_products(df):
     """
@@ -368,7 +370,7 @@ if __name__=="__main__":
     df = data_wrangling(df)
 
     ##### Pearson Correaltion betwen two features
-    print Pearson_Correlation(df[['Response','Disputed']])    
+    #print Pearson_Correlation(df[['Response','Disputed']])    
     
     #####
     top_complained_products(df[['Date received','Product','Response','Disputed']])

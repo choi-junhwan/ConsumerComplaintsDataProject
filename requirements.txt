@@ -2,7 +2,7 @@
 numpy
 pandas
 nltk
-stop-words
+stop_words
 #gensim
 wordcloud 
 matplotlib

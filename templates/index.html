@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Quandl Stock Price</title>
+		<title>Consumer Complaint Analysis</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 		<link rel=stylesheet type=text/css href='{{ url_for('static',filename='style.css')}}'>
@@ -11,18 +11,12 @@
 	<body>
 		<div>
   		  <h1>User Input</h1>
-		  <h2>Please enter a stock ticker eg. GOOG, and check desired features.</h2>
-		  <form id='userinfoform_lulu' method='post' action='index' >
-		    <p>
-		      Ticker symbol: <input type='text' name='stock' />
-		    </p>
-		    <p>
-		      <input type="checkbox" name='key' value='Close'>Closing price<br>
-		      <input type="checkbox" name='key' value='Adj. Close'>Adjusted closing price<br>
-		      <input type="checkbox" name='key' value='Open'>Opening price<br>
-		      <input type="checkbox" name='key' value='Adj. Open'>Adjusted opening price<br>
-		      <input type="checkbox" name='key' value='High'>Peak price<br>
-		      <input type="checkbox" name='key' value='Adj. High'>Adjusted peak price<br>
+		  <h2>Please select following option.</h2>
+		  <form id='plot' method='post' action='index' >
+		  <p>
+		      <input type="checkbox" name='key' value='Top Product'>Top Product<br>
+		      <input type="checkbox" name='key' value='Top Issues'>Top Issues<br>
+		      <input type="checkbox" name='key' value='Issue Analysis'>Text Analysis with Top Issues<br>
 		    </p>
 		    <p>
 		      <input type='submit' value='Submit' />

@@ -1,8 +1,7 @@
 import requests
 import numpy as np
 from flask import Flask, render_template, request, redirect
-import ConsumerComplaints_Analy as CCAnaly
-import pandas as pd
+import myquandl as myquandl
 
 app = Flask(__name__)
 app.vars={}
@@ -16,21 +15,14 @@ def index():
   if request.method == "GET":
     return render_template('index.html')
   else:
+    app.vars['stock'] = request.form['stock']    
     app.vars['key'] = request.form['key']
-    df       = pd.read_csv('Consumer_Complaints_short.csv', header=0)
-    df       = CCAnaly.data_wrangling(df)    
-
-    if app.vars['key'] == 'Top Product':
-      plotPng = CCAnaly.top_complained_products(df[['Date received','Product','Response','Disputed']])
-    elif app.vars['key'] == 'Top Issues':
-      plotPng = CCAnaly.top_complained_issues(df[['Date received','Issue','Response','Disputed']])
-    elif app.vars['key'] == 'Issue Analysis':
-      plotPng = CCAnaly.text_analysis(df[['Issue']])
+    success, script, div = myquandl.stock_plot(app.vars['stock'], app.vars['key'])
+    if success:
+      return render_template('graph.html', name=app.vars['stock'], script=script, div=div)
     else:
-      pass
+      return render_template('error.html', name=app.vars['stock'])
 
-    return render_template('plot.html', name=app.vars['key'], plotPng=plotPng)
-    
     
 if __name__ == '__main__':
   #app.run(debug=True)

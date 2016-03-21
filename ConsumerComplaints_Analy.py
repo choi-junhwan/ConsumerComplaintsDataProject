@@ -49,22 +49,22 @@ def top_complained_products(df):
     df_sub = df[['Product']]
     df_sub.insert(0, 'count', 1)
     df_sub_grp = df_sub.groupby(['Product']).sum().sort_index(by='count', ascending=False).ix[0:5]
-    print '\n Top 5 most frequently complained products'
-    print df_sub_grp
+    #print '\n Top 5 most frequently complained products'
+    #print df_sub_grp
 
     df_sub = df[df['Response'] == 0]
     df_sub = df_sub[['Product']]
     df_sub.insert(0, 'count', 1)
     df_sub_grp = df_sub.groupby(['Product']).sum().sort_index(by='count', ascending=False).ix[0:5]
-    print '\n Top 5 most frequently complained products which are not Timely responded'
-    print df_sub_grp
+    #print '\n Top 5 most frequently complained products which are not Timely responded'
+    #print df_sub_grp
 
     df_sub = df[df['Disputed'] == 1]
     df_sub = df_sub[['Product']]
     df_sub.insert(0, 'count', 1)
     df_sub_grp = df_sub.groupby(['Product']).sum().sort_index(by='count', ascending=False).ix[0:5]
-    print '\n Top 5 most frequently complained products which are Consumer disputed'
-    print df_sub_grp
+    #print '\n Top 5 most frequently complained products which are Consumer disputed'
+    #print df_sub_grp
 
     # Annual list viz
     df_sub = df[['Product']]
@@ -125,22 +125,22 @@ def top_complained_issues(df):
     df_sub = df[['Issue']]
     df_sub.insert(0, 'count', 1)
     df_sub_grp = df_sub.groupby(['Issue']).sum().sort_index(by='count', ascending=False).ix[0:10]
-    print '\n Top 10 most frequently complained issues'
-    print df_sub_grp
+    #print '\n Top 10 most frequently complained issues'
+    #print df_sub_grp
 
     df_sub = df[df['Response'] == 0]
     df_sub = df_sub[['Issue']]
     df_sub.insert(0, 'count', 1)
     df_sub_grp = df_sub.groupby(['Issue']).sum().sort_index(by='count', ascending=False).ix[0:10]
-    print '\n Top 10 most frequent complained issues which are not Timely responded'
-    print df_sub_grp
+    #print '\n Top 10 most frequent complained issues which are not Timely responded'
+    #print df_sub_grp
     
     df_sub = df[df['Disputed'] == 1]
     df_sub = df_sub[['Issue']]
     df_sub.insert(0, 'count', 1)
     df_sub_grp = df_sub.groupby(['Issue']).sum().sort_index(by='count', ascending=False).ix[0:10]
-    print '\n Top 10 most frequent complained issues which are Consumer disputed'
-    print df_sub_grp
+    #print '\n Top 10 most frequent complained issues which are Consumer disputed'
+    #print df_sub_grp
     
     # More analysis with top issues
     df_sub = df[['Issue']]

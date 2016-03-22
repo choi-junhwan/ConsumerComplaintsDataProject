@@ -1,6 +1,6 @@
 import numpy as np
 from flask import Flask, render_template, request, redirect
-import ConsumerComplaints_Analy as CCAnaly
+#import ConsumerComplaints_Analy as CCAnaly
 import pandas as pd
 
 app = Flask(__name__)

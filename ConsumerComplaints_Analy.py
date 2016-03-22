@@ -1,18 +1,17 @@
 import pandas as pd
 import numpy as np
-#import csv as csv
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter
-#import pylab as pl
-#from wordcloud import WordCloud
-#from scipy.stats.stats import pearsonr
+import pylab as pl
+from wordcloud import WordCloud
+from scipy.stats.stats import pearsonr
 from nltk.tokenize import RegexpTokenizer
 from nltk.stem.porter import PorterStemmer
 from stop_words import get_stop_words
-#from gensim import corpora, models
-#import gensim
+from gensim import corpora, models
+import gensim
 import tempfile
 
 
@@ -31,18 +30,18 @@ def data_wrangling(df):
 
     return df
 
-#def Pearson_Correlation(df):
+def Pearson_Correlation(df):
     """
     Pearson's Correlation between Response and Disputed rate.
     """
-"""
+
     corr   = df[['Response','Disputed']]
     test_x = corr['Response'].values
     test_y = corr['Disputed'].values
     return pearsonr(test_x, test_y)
-"""
 
-def top_complained_products(df):
+
+def top_complained_products(df, selection=0):
     """
     Complained Product
     """
@@ -103,19 +102,20 @@ def top_complained_products(df):
     tdf_grp.plot(kind='bar', stacked=True, title="Top 3 most complained Products", rot=10)
 
     fig = plt.gcf()
-    #fig.savefig('bar.png')
-    #pl.clf()
-    #return 0;
+    fig.savefig('bar_product.png')
+    pl.clf()
 
+    """
     f = tempfile.NamedTemporaryFile(dir='static/temp',suffix='.png',delete=False)
     fig.savefig(f)
     f.close() # close the file
     # get the file's name
     # (the template will need that)
     plotPng = f.name.split('/')[-1]
-    
+
     return plotPng
-                        
+    """
+    return 0
 
 
 def top_complained_issues(df):
@@ -277,19 +277,16 @@ def top_complained_issues(df):
     matplotlib.pyplot.sca(fig3)
     plt.xticks(rotation=20)
 
-    f = tempfile.NamedTemporaryFile(dir='static/temp', suffix='.png', delete=False)
-    plt.savefig(f)
-    f.close()
-    plotPng = f.name.split('/')[-1]
-    return plotPng
+    plt.savefig('ComplainCount.png')
+    return 0
 
 
-#def text_analysis(df):
+def text_analysis(df):
     """
     Text analysis for top issuess with LDA
     Initialize text 
     """
-"""
+
     #Complained Issues
     # More analysis with top issues
     df_sub = df[['Issue']]
@@ -360,19 +357,22 @@ def top_complained_issues(df):
     fig2.imshow(wordcloud)
     fig2.axis("off")
 
+    """
     f = tempfile.NamedTemporaryFile(dir='static/temp', suffix='.png', delete=False)
     plt.savefig(f)
     f.close()
     plotPng = f.name.split('/')[-1]
     return plotPng
-"""
+    """
+    plt.savefig('ComplainCount_WC.png')
+    return 0
 
 if __name__=="__main__":
-    df = pd.read_csv('Consumer_Complaints_short.csv', header=0)
+    df = pd.read_csv('../Data/Consumer_Complaints.csv', header=0)
     df = data_wrangling(df)
 
     ##### Pearson Correaltion betwen two features
-    #print Pearson_Correlation(df[['Response','Disputed']])    
+    print Pearson_Correlation(df[['Response','Disputed']])    
     
     #####
     top_complained_products(df[['Date received','Product','Response','Disputed']])

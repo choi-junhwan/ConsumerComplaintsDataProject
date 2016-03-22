@@ -2,7 +2,6 @@ import numpy as np
 from flask import Flask, render_template, request, redirect
 import ConsumerComplaints_Analy as CCAnaly
 import pandas as pd
-import os
 
 app = Flask(__name__)
 app.vars={}
@@ -13,20 +12,20 @@ def main():
 
 @app.route('/index', methods=['GET','POST'])
 def index():
-  os.system("rm -f ./static/temp/*png")
   if request.method == "GET":
     return render_template('index.html')
   else:
     app.vars['key'] = request.form['key']
-    df       = pd.read_csv('Consumer_Complaints_short.csv', header=0)
-    df       = CCAnaly.data_wrangling(df)    
+    #df       = pd.read_csv('Consumer_Complaints_short.csv', header=0)
+    #df       = CCAnaly.data_wrangling(df)    
 
     if app.vars['key'] == 'Top Product':
-      plotPng = CCAnaly.top_complained_products(df[['Date received','Product','Response','Disputed']])
+      #plotPng = CCAnaly.top_complained_products(df[['Date received','Product','Response','Disputed']])
+      plotPng = 'bar_product.png'
     elif app.vars['key'] == 'Top Issues':
-      plotPng = CCAnaly.top_complained_issues(df[['Date received','Issue','Response','Disputed']])
+      plotPng = 'ComplainCount.png'
     elif app.vars['key'] == 'Issue Analysis':
-      plotPng = CCAnaly.text_analysis(df[['Issue']])
+      plotPng = 'ComplainCount_WC.png'
     else:
       pass
 

@@ -2,9 +2,7 @@ import csv  as csv
 import pandas as pd
 from bokeh.plotting import figure, show
 from bokeh.embed import components
-from bokeh.sampledata.us_counties import data as counties
 from bokeh.sampledata.us_states import data as states
-from bokeh.sampledata.unemployment import data as unemployment
 
 def data_wrangling(df):
     #Data overview: contents and size

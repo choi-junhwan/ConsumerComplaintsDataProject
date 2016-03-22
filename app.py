@@ -1,7 +1,6 @@
 import numpy as np
 from flask import Flask, render_template, request, redirect
-#import ConsumerComplaints_Analy as CCAnaly
-import pandas as pd
+import Complaints_Map as cmap
 
 app = Flask(__name__)
 app.vars={}
@@ -16,22 +15,19 @@ def index():
     return render_template('index.html')
   else:
     app.vars['key'] = request.form['key']
-    #df       = pd.read_csv('Consumer_Complaints_short.csv', header=0)
-    #df       = CCAnaly.data_wrangling(df)    
 
-    if app.vars['key'] == 'Top Product':
-      #plotPng = CCAnaly.top_complained_products(df[['Date received','Product','Response','Disputed']])
-      plotPng = 'bar_product.png'
-    elif app.vars['key'] == 'Top Issues':
-      plotPng = 'ComplainCount.png'
-    elif app.vars['key'] == 'Issue Analysis':
-      plotPng = 'ComplainCount_WC.png'
+    if app.vars['key'] == 'Firstlook':
+      return render_template('first.html', plotPng1='bar_product.png', plotPng2='ComplainCount.png')
+    elif app.vars['key'] == 'Map':
+      script, div = cmap.map_view()
+      return render_template('graph.html', script=script, div=div)
+    elif app.vars['key'] == 'Text':
+      return render_template('textanalysis.html', plotPng ='ComplainCount_WC.png')
     else:
-      pass
+      return render_template('error.html')
 
-    return render_template('plot.html', name=app.vars['key'], plotPng=plotPng)
     
     
 if __name__ == '__main__':
-  #app.run(debug=True)
-  app.run(host='0.0.0.0')
+  app.run(debug=True)
+  #app.run(host='0.0.0.0')

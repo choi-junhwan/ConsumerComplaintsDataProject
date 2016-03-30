@@ -47,10 +47,18 @@ def top_complained_products(df, selection=0):
     """
     df_sub = df[['Product']]
     df_sub.insert(0, 'count', 1)
-    df_sub_grp = df_sub.groupby(['Product']).sum().sort_index(by='count', ascending=False).ix[0:5]
-    #print '\n Top 5 most frequently complained products'
-    #print df_sub_grp
+    df_sub_grp = df_sub.groupby(['Product']).sum().sort_index(by='count', ascending=False).ix[0:10]
+    print '\n Top 5 most frequently complained products'
+    print df_sub_grp
 
+    df_sub_grp.plot(kind='barh', rot=50, fontsize=7, title="Most Complained Products")
+    fig = plt.gcf()
+    plt.xlabel('count')
+
+    fig.savefig('bar_top_product.png')    
+    pl.clf()   
+    
+    """
     df_sub = df[df['Response'] == 0]
     df_sub = df_sub[['Product']]
     df_sub.insert(0, 'count', 1)
@@ -64,14 +72,15 @@ def top_complained_products(df, selection=0):
     df_sub_grp = df_sub.groupby(['Product']).sum().sort_index(by='count', ascending=False).ix[0:5]
     #print '\n Top 5 most frequently complained products which are Consumer disputed'
     #print df_sub_grp
+    """
 
     # Annual list viz
-    df_sub = df[['Product']]
-    df_sub.insert(0, 'count', 1)
+    #df_sub = df[['Product']]
+    #df_sub.insert(0, 'count', 1)
 
     Product_List=[]
     for i in range(0,3):
-        Product_List.append(df_sub.groupby(['Product']).sum().sort_index(by='count', ascending=False).ix[i].name)
+        Product_List.append(df_sub_grp.ix[i].name)
          
     date_list=[]
     count_0  =[]
@@ -99,10 +108,9 @@ def top_complained_products(df, selection=0):
 
     tdf_grp = tdf.groupby(level=0).sum().resample('A', how='sum')
     #xticks = np.arange(2011,2016)
-    tdf_grp.plot(kind='bar', stacked=True, title="Top 3 most complained Products", rot=10)
-
+    tdf_grp.plot(kind='bar', stacked=True, title="Top 3 most complained Products for each years", rot=10)
     fig = plt.gcf()
-    fig.savefig('bar_product.png')
+    fig.savefig('bar_product_tevolve.png')
     pl.clf()
 
     """
@@ -124,10 +132,17 @@ def top_complained_issues(df):
     """
     df_sub = df[['Issue']]
     df_sub.insert(0, 'count', 1)
-    df_sub_grp = df_sub.groupby(['Issue']).sum().sort_index(by='count', ascending=False).ix[0:10]
+    df_sub_grp = df_sub.groupby(['Issue']).sum().sort_index(by='count', ascending=False).ix[0:25]
+
+    df_sub_grp.plot(kind='barh', rot=0, fontsize=2,  title="Most Complained Issues")
+    fig = plt.gcf()
+    fig.savefig('bar_top_issues.png')    
+    pl.clf()   
+
     #print '\n Top 10 most frequently complained issues'
     #print df_sub_grp
 
+    """
     df_sub = df[df['Response'] == 0]
     df_sub = df_sub[['Issue']]
     df_sub.insert(0, 'count', 1)
@@ -145,6 +160,7 @@ def top_complained_issues(df):
     # More analysis with top issues
     df_sub = df[['Issue']]
     df_sub.insert(0, 'count', 1)
+    """
     
     Issue_List=[]
     for i in range(0,25):
@@ -204,6 +220,7 @@ def top_complained_issues(df):
         else:
             CountDisp2.append(0)
 
+
     ts = pd.Series(CountAll, index=DateList)
     ts_grp = ts.groupby(level=0).sum().resample('A', how='sum')
     
@@ -215,7 +232,7 @@ def top_complained_issues(df):
         
     ts2 = pd.Series(Count2, index=DateList)
     ts2_grp = ts2.groupby(level=0).sum().resample('A', how='sum')
-    
+
     tr0 = pd.Series(CountResp0, index=DateList)
     tr0_grp = tr0.groupby(level=0).sum().resample('A', how='sum')
         
@@ -235,49 +252,37 @@ def top_complained_issues(df):
     td2_grp = td2.groupby(level=0).sum().resample('A', how='sum')
         
 
-    fig = plt.figure(figsize=(23,8))
-    fig1 = fig.add_subplot(1,3,1)
-    fig2 = fig.add_subplot(1,3,2)
-    fig3 = fig.add_subplot(1,3,3)
 
-    fig1.plot(ts_grp.index,ts_grp,label='total')
-    fig1.bar(ts0_grp.index,ts0_grp,label='%s' % Issue_List[0],color="red",width=100)
-    fig1.bar(ts1_grp.index,ts1_grp,label='%s' % Issue_List[1],color="blue",bottom=ts0_grp,width=100)
-    fig1.bar(ts2_grp.index,ts2_grp,label='%s' % Issue_List[2],color="green",bottom=(ts1_grp+ts0_grp),width=100)
-    fig1.legend(loc=2, prop={'size':10})
-    fig1.set_title('Number of Complaints per year', fontsize=20)
-    fig1.set_ylabel('Number of Complaints', fontsize=15)
+
+    fig = plt.figure(figsize=(15,8))
+    fig1 = fig.add_subplot(1,2,1)
+    fig2 = fig.add_subplot(1,2,2)
+
+    fig1.plot(ts0_grp.index,tr0_grp/ts0_grp,label='%s' % Issue_List[0],color="red")
+    fig1.plot(ts1_grp.index,tr1_grp/ts1_grp,label='%s' % Issue_List[1],color="blue")
+    fig1.plot(ts2_grp.index,tr2_grp/ts2_grp,label='%s' % Issue_List[2],color="green")
+    fig1.legend(loc=0, prop={'size':10})
+    fig1.set_title('NOT Timely responded rate',fontsize=20)
+    fig1.set_ylabel('Rate',fontsize=15)
     fig1.xaxis.set_major_formatter(DateFormatter('%b %Y'))
     fig1.set_xlabel('Date',fontsize=15)
+    plt.xticks(rotation=30)
         
-
-    fig2.plot(ts0_grp.index,tr0_grp/ts0_grp,label='%s' % Issue_List[0],color="red")
-    fig2.plot(ts1_grp.index,tr1_grp/ts1_grp,label='%s' % Issue_List[1],color="blue")
-    fig2.plot(ts2_grp.index,tr2_grp/ts2_grp,label='%s' % Issue_List[2],color="green")
+    fig2.plot(ts0_grp.index,td0_grp/ts0_grp,label='%s' % Issue_List[0],color="red")
+    fig2.plot(ts1_grp.index,td1_grp/ts1_grp,label='%s' % Issue_List[1],color="blue")
+    fig2.plot(ts2_grp.index,td2_grp/ts2_grp,label='%s' % Issue_List[2],color="green")
     fig2.legend(loc=0, prop={'size':10})
-    fig2.set_title('NOT Timely responded rate',fontsize=20)
+    fig2.set_title('Consumer disputed rate',fontsize=20)
     fig2.set_ylabel('Rate',fontsize=15)
     fig2.xaxis.set_major_formatter(DateFormatter('%b %Y'))
     fig2.set_xlabel('Date',fontsize=15)
-    plt.xticks(rotation=30)
-        
-    fig3.plot(ts0_grp.index,td0_grp/ts0_grp,label='%s' % Issue_List[0],color="red")
-    fig3.plot(ts1_grp.index,td1_grp/ts1_grp,label='%s' % Issue_List[1],color="blue")
-    fig3.plot(ts2_grp.index,td2_grp/ts2_grp,label='%s' % Issue_List[2],color="green")
-    fig3.legend(loc=0, prop={'size':10})
-    fig3.set_title('Consumer disputed rate',fontsize=20)
-    fig3.set_ylabel('Rate',fontsize=15)
-    fig3.xaxis.set_major_formatter(DateFormatter('%b %Y'))
-    fig3.set_xlabel('Date',fontsize=15)
         
     matplotlib.pyplot.sca(fig1)
     plt.xticks(rotation=20)
     matplotlib.pyplot.sca(fig2)
     plt.xticks(rotation=20)
-    matplotlib.pyplot.sca(fig3)
-    plt.xticks(rotation=20)
 
-    plt.savefig('ComplainCount.png')
+    plt.savefig('ComplainCount_ratio.png')
     return 0
 
 
@@ -332,8 +337,8 @@ def text_analysis(df):
     print(LDAText)
 
     wordcloud = WordCloud().generate(text_view)
-    fig = plt.figure(figsize=(15,8))
-    fig1 = fig.add_subplot(1,2,1)
+    fig = plt.figure(figsize=(8,14))
+    fig1 = fig.add_subplot(2,1,1)
     fig1.set_title('5 Issue Topics from LDA Topic Modeling',fontdict={'fontsize':25})
     fig1.text(0.5, 0.9, LDAText[0], size=15, rotation=0.,
               ha="center", va="center",
@@ -352,7 +357,7 @@ def text_analysis(df):
               bbox=dict(boxstyle="round", ec=(1., 0.5, 0.5), fc=(1., 0.8, 0.8),))
     fig1.axis('off')
 
-    fig2 = fig.add_subplot(1,2,2)
+    fig2 = fig.add_subplot(2,1,2)
     fig2.set_title("Top issue words", fontdict={'fontsize':25})
     fig2.imshow(wordcloud)
     fig2.axis("off")
@@ -372,8 +377,8 @@ if __name__=="__main__":
     df = data_wrangling(df)
 
     ##### Pearson Correaltion betwen two features
-    print Pearson_Correlation(df[['Response','Disputed']])    
-    
+    #print Pearson_Correlation(df[['Response','Disputed']])    
+
     #####
     top_complained_products(df[['Date received','Product','Response','Disputed']])
 

@@ -2,14 +2,20 @@
 <html>
   <head>
     <title>First look</title>
-    <h2>Overall general features from the data<br><a href="/index">Back</a></h1>
+    <h2>Overall general features from the data about most frequantly complained finacial products and most frequant complaint issue.<br><a href="/index">Back</a></h1>
     <hr size="2" width="80%">
     <div class='matplotlib', >
-      <h2> Most frequantly complainted product <h1>
+      <h2> Most frequantly complainted products </h2>
       <img src="static/figures/{{plotPng1}}" style="width:75%; height:75%" >
+      <h2> Time histroy of count of the complainted products </h2>
+      <img src="static/figures/{{plotPng2}}" style="width:75%; height:75%" >
       <hr size="1" width="80%">
-      <h2> Most frequant complainted issues <h1>
-      <img src="static/figures/{{plotPng2}}" style="width:100%; height:100%">
-    </div>
+      <h2> Most frequantly complainted issues </h2>
+	  <h3> 1: Loan modification, collection, foreclosure</h2>
+	  <h3> 2: Incorrect information on credit report</h2>
+	  <h3> 3: Loan servicing, payments, escrow account</h2>
+      <h2> Time history of responded rate and disputed rate </h2>
+     <img src="static/figures/{{plotPng3}}" style="width:100%; height:100%">
+</div>
   </body>
   </html>

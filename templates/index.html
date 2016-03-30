@@ -3,35 +3,65 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Consumer Complaint Analysis</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+		<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/boostrap.min.css">
+		<link rel="stylesheet" href="css/custom.css">
 		<link rel=stylesheet type=text/css href='{{ url_for('static',filename='style.css')}}'>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+		<style>
+		h1 {text-align: center;}
+		h2 {text-align: center;}
+		.center {
+		margin: auto;
+		width: 50%;
+		border: 3px solid #73AD21;
+		padding: 10px;
+		}
+		p1 {
+		font-family: "Times New Roman";
+		font-size: 25px;
+		}
+		p {
+		font-family: "Times New Roman";
+		font-size: 25px;
+		}
+		</style>
 	</head>
 	<body>
 		<div>
   		  <h1>Consumer's Complaints Analysis</h1>
-		  <h2>		    
-		    <hr size="2" width="80%">
+		  <p1>		    
+		    <hr size="2" width="100%">
 		    Consumer Complaints are valuable dataset that can help to improve the business.
 		    How to resolve the complaints is an important measurement of the quality of the customer service.
 		    The contents of the complaints provide new insight how to upgrade the current products.<br>
 		    
-		    In this project, I analyze the Consumer Complaints database by <a href="http://www.consumerfinance.gov">the Consumer Financial Protection Bureau (CFPB)</a> <br>
-		    <hr size="2" width="80%">
-		    Three different analyses are performed.
+		    In this project, I analyze the Consumer Complaints database by <a href="http://www.consumerfinance.gov">the Consumer Financial Protection Bureau (CFPB)</a> <br>		    
+		    <hr size="5" width="100%">
+		 </p1>
+		</div>
+
+		<div> 
+		  <h2>
+		  Three different analyses are performed.
 		  </h2>
 		  <form id='plot' method='post' action='index' >
-		  <p>
-		      <input type="checkbox" name='key' value='Firstlook'>First Look<br>
-		      <input type="checkbox" name='key' value='Map'>Geograpical View<br>
-		      <input type="checkbox" name='key' value='Text'>Text Analysis<br>
+		</div>
+		<div class="center">
+		   <p>
+		      <input type="checkbox" name='key' value='Firstlook'>First Look : Overall complaints statics<br>
+		      <input type="checkbox" name='key' value='Map'>Geograpical View : Where do the complaints come from? <br>
+		      <input type="checkbox" name='key' value='Text'>Text Analysis : WHAT IS THE PROBLEM!!!<br>
 		    </p>
 		    <p>
 		      <input type='submit' value='Submit' />
 		    </p>
 		  </form>
-		  
+		 
 		</div>
 	</body>
 </html>

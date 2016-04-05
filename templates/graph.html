@@ -1,13 +1,54 @@
-<html>
-  <head>
-    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.css" type="text/css" />
-    <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.js"></script>
-    {{ script | safe }}
-  </head>
-  <body>
-    <div class=page>
-      <h1>State wise counts of the complaints at 2011-2015 <br><a href="/index">Back</a></h1>
-      {{ div | safe }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Case</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.css" type="text/css" >
+  <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.js"></script>
+  {{ script1 | safe }}
+  <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.css" type="text/css" >
+  <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.js"></script>
+  {{ script2 | safe }}
+  <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.css" type="text/css" >
+  <script type="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.11.0.min.js"></script>
+  {{ script3 | safe }}
+</head>
+<body>
+
+<div class="container">
+  <h1>State wise counts of the complaints at 2011-2015 <br><a href="/index">Back</a></h1>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#menu1">Respond rate</a></li>
+    <li><a data-toggle="tab" href="#menu2">Disputed rate</a></li>
+    <li><a data-toggle="tab" href="#menu3">Correlation</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="#menu1" class="tab-pane fade in active">
+      <h3>Respond Rate</h3>
+      <p> The rate of the complaints timely responded from the company. </p>
+      {{ div1 | safe }}
     </div>
-  </body>
-  </html>
+    <div id="menu2" class="tab-pane fade">
+      <h3>Disputed rate</h3>
+      <p> The rate of the complaints that are disputed from a company. </p>
+      {{ div2 | safe }}
+    </div>
+    <div id="menu3" class="tab-pane fade">
+      <h3>Correlation</h3>
+      <p> Correlation between Responded rate and Disputed rate. </p>
+      {{ div3 | safe }}
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
+
+

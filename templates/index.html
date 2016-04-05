@@ -6,11 +6,9 @@
 		<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
 		<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="css/boostrap.min.css">
 		<link rel="stylesheet" href="css/custom.css">
-		<link rel=stylesheet type=text/css href='{{ url_for('static',filename='style.css')}}'>
-		<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="css/boostrap.min.css">
+		<!--<link rel=stylesheet type=text/css href='{{ url_for('static',filename='style.css')}}'>-->
 		<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
 		<style>
 		h1 {text-align: center;}
@@ -32,9 +30,10 @@
 		</style>
 	</head>
 	<body>
-		<div>
+	         <div>
   		  <h1>Consumer's Complaints Analysis</h1>
 		  <p1>		    
+	            <div class="jumbotron">
 		    <hr size="2" width="100%">
 		    Consumer Complaints are valuable dataset that can help to improve the business.
 		    How to resolve the complaints is an important measurement of the quality of the customer service.
@@ -42,6 +41,7 @@
 		    
 		    In this project, I analyze the Consumer Complaints database by <a href="http://www.consumerfinance.gov">the Consumer Financial Protection Bureau (CFPB)</a> <br>		    
 		    <hr size="5" width="100%">
+		    </div>
 		 </p1>
 		</div>
 
@@ -63,5 +63,7 @@
 		  </form>
 		 
 		</div>
+	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	</body>
 </html>

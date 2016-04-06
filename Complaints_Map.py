@@ -114,7 +114,7 @@ def map_view():
             state_colors_disp.append("balck")
 
     """
-    plot_count = figure(title="US Complaints Counts", toolbar_location="left",
+    plot_count = figure(title="Statewise Complaints Counts", toolbar_location="left",
                   plot_width=1100, plot_height=700)
     plot_count.patches(state_xs, state_ys,
                  fill_color=state_colors_count, fill_alpha=0.7,
@@ -122,14 +122,14 @@ def map_view():
     script_count, div_count = components(plot_count)
     """
     
-    plot_resp = figure(title="US Complaints Respond Rate", toolbar_location="left",
+    plot_resp = figure(title="Statewise Complaints Respond Rate", toolbar_location="left",
                   plot_width=1100, plot_height=700)
     plot_resp.patches(state_xs, state_ys,
                  fill_color=state_colors_resp, fill_alpha=0.7,
                  line_color="#884444", line_width=2, line_alpha=0.3)
     script_resp, div_resp = components(plot_resp)
     
-    plot_disp = figure(title="US Complaints Disputed Rate", toolbar_location="left",
+    plot_disp = figure(title="Statewise Complaints Disputed Rate", toolbar_location="left",
                   plot_width=1100, plot_height=700)
     plot_disp.patches(state_xs, state_ys,
                  fill_color=state_colors_disp, fill_alpha=0.7,

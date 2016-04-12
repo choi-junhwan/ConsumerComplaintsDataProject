@@ -337,13 +337,8 @@ def text_analysis(df):
     print(LDAText)
 
     wordcloud = WordCloud().generate(text_view)
-    fig = plt.figure(figsize=(8,6))
-    fig1 = fig.add_subplot(1,1,1)
-    fig1.set_title("Top issued words", fontdict={'fontsize':25})
-    fig1.imshow(wordcloud)
-    fig1.axis("off")
+    fig = plt.figure(figsize=(8,17))
 
-    """
     fig1 = fig.add_subplot(2,1,1)
     fig1.set_title('5 Issue Topics from LDA Topic Modeling',fontdict={'fontsize':25})
     fig1.text(0.5, 0.9, LDAText[0], size=15, rotation=0.,
@@ -367,7 +362,7 @@ def text_analysis(df):
     fig2.set_title("Top issue words", fontdict={'fontsize':25})
     fig2.imshow(wordcloud)
     fig2.axis("off")
-    """
+
     """
     f = tempfile.NamedTemporaryFile(dir='static/temp', suffix='.png', delete=False)
     plt.savefig(f)
@@ -383,13 +378,13 @@ if __name__=="__main__":
     df = data_wrangling(df)
 
     ##### Pearson Correaltion betwen two features
-    #print Pearson_Correlation(df[['Response','Disputed']])    
+    print Pearson_Correlation(df[['Response','Disputed']])    
 
     #####
-    #top_complained_products(df[['Date received','Product','Response','Disputed']])
+    top_complained_products(df[['Date received','Product','Response','Disputed']])
 
     ####
-    #top_complained_issues(df[['Date received','Issue','Response','Disputed']])
+    top_complained_issues(df[['Date received','Issue','Response','Disputed']])
 
     ####
-    text_analysis(df[['Issue']])
+    #text_analysis(df[['Issue']])

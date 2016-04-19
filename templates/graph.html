@@ -30,18 +30,20 @@
 
   <div class="tab-content">
     <div id="#menu1" class="tab-pane fade in active">
-      <h3>Respond Rate</h3>
-      <p> The rate of the complaints timely responded from the company. The color range is 96% to 100%. Althouhg the repsond rate is overall high, complaints from North East states are better responded.</p>
+      <h2>Respond Rate</h2>
+      <h3> The rate of the complaints timely responded from the company. The color range is 96% to 100%. Darker color represents higher rate.</h3>
+      <h3 class="bg-primary">Althouhg the repsond rate is overall high, complaints from North East states are better responded.</h3>
       {{ div1 | safe }}
     </div>
     <div id="menu2" class="tab-pane fade">
-      <h3>Disputed rate</h3>
-      <p> The rate of the complaints that are disputed from the company. The color range is 15% to 35%. Among the big states, custumers in California get more disputed.</p>
+      <h2>Disputed rate</h2>
+      <h3> The rate of the complaints that are disputed from the company. The color range is 15% to 35%.Darker color represents higher rate </h3>
+      <h3 class="bg-primary">Among the big states, custumers in California get more disputed.</h3>
       {{ div2 | safe }}
     </div>
     <div id="menu3" class="tab-pane fade">
-      <h3>Correlation</h3>
-      <p> Correlation between Responded rate and Disputed rate. The plot shows that there is hardly any correlation between two and measured Pearson correlation coefficient is as low as 0.033. </p>
+      <h2>Correlation</h2>
+      <h3 class="bg-primary"> Correlation between Responded rate and Disputed rate. The plot shows that there is hardly any correlation between two and measured Pearson correlation coefficient is as low as 0.033. </h3>
       {{ div3 | safe }}
     </div>
   </div>

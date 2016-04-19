@@ -21,17 +21,18 @@
 
   <div class="tab-content">
     <div id="#menu1" class="tab-pane fade in active">
-      <h3>Top issues</h3>
-      <p> Based on top 50 frequently complained issue, perform the text analysis machine leanring method to figure out what it the underline complaint issue. The word cloud shows that "Credit" and "loan" are most noticeable word in the complained issue. </p>
+      <h2>Top issues</h2>
+      <h3 class="bg-primary"> Based on top 50 frequently complained issues, perform the text analysis machine leanring method (bag of the words) to figure out what it the underline complaint issue. The word cloud shows that "Credit" and "loan" are most noticeable word in the complained issue. </h3>
       <div class='matplotlib'>
-	<img src="static/figures/{{plotPng}}" style="width:100%; height:100%">
+	<img src="static/figures/{{plotPng}}" style="width:90%; height:90%">
       </div>
     </div>
     <div id="menu2" class="tab-pane fade">
-      <h3>Complaint Issue</h3>
-      <p> Topic Modeling Issues <P>
-	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.css">
-
+      <h2>Complaint Issue</h2>
+      <h3> Based on all the complaint issus, I perform topic modeling (LDA) analysis and visualize the result </h3>
+      <h3 class="bg-primary"> There are three top complaint issue topics: "credit report", "credit card protection" and "loan customer service". It suggests that the complaints are mostly based on credit credit card issue and loan issues </h3>
+      <p> If you move mouse to one of topic circle in left panel, you will see the ranking of the related terms. </p>
+      <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.css">
 
 	<div id="ldavis_issue"></div>
 	<script type="text/javascript">
@@ -71,13 +72,23 @@
           });
 	  }
 	</script>
+      <p> What is LDA? : Latent Dirichlet allocation (LDA) is a generative statistical model that allows sets of observations to be explained by unobserved groups that explain why some parts of the data are similar. For example, if observations are words collected into documents, it posits that each document is a mixture of a small number of topics and that each word's creation is attributable to one of the document's topics. (<a href="https://en.wikipedia.org/wiki/Latent_Dirichlet_allocation">see realted wiki</a>) </p>
+      <p>How to read visualiztion? : First, it provides a novel method for choosing which terms to present to a user to aid in the task of topic interpretationin. Second, it presents the ranking terms purely by their probability under a topic. Last, it allows users to flexibly explore topic-term relationships using relevance to better understand a fitted LDA model. (<a href="http://nlp.stanford.edu/events/illvi2014/papers/sievert-illvi2014.pdf"> read this document for detail </a>)</p>
     </div>
 
     <div id="menu3" class="tab-pane fade">
       <h3>Complaint Narrative</h3>
-      <p> Topic Modeling Narrative <P>
-	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.css">
-
+      <h3> Based on all the complaint narrative, I perform topic modeling (LDA) analysis and visualize the result </h3>
+      <h3 class="bg-primary"> We can claim that there are three major narratives:
+	<ol class="c">
+	  <li> complaints communication narrative </li>
+	  <li> bank account related narrative </li>
+	  <li> debt collection related narrative </li>
+	</ol>
+	Although the complaint narrative are based on much large text data, its underline topics are less clear than complaints topic. I may need to clean more meaning-less words.  
+      </h3>
+      <p> If you move mouse to one of topic circle in left panel, you will see the ranking of the related terms. </p>
+      <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.css">
 
 	<div id="ldavis_narr"></div>
 	<script type="text/javascript">

@@ -15,7 +15,8 @@
   <h1>Text Ananlysis <br><a href="/index">Back</a></h1>
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#menu1">Top Issues</a></li>
-    <li><a data-toggle="tab" href="#menu2">Complaint Narrative</a></li>
+    <li><a data-toggle="tab" href="#menu2">Complaint Issue Topic Analysis</a></li>
+    <li><a data-toggle="tab" href="#menu3">Complaint Narrative Topic Analysis</a></li>
   </ul>
 
   <div class="tab-content">
@@ -27,14 +28,104 @@
       </div>
     </div>
     <div id="menu2" class="tab-pane fade">
-      <h3>Complaint Narrative</h3>
-      <p> Under Construction <P>
+      <h3>Complaint Issue</h3>
+      <p> Topic Modeling Issues <P>
+	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.css">
+
+
+	<div id="ldavis_issue"></div>
+	<script type="text/javascript">
+
+	  var ldavis_issue_data = {{ data_issue | safe }}
+
+
+	  function LDAvis_load_lib(url, callback){
+	  var s = document.createElement('script');
+	  s.src = url;
+	  s.async = true;
+	  s.onreadystatechange = s.onload = callback;
+	  s.onerror = function(){console.warn("failed to load library " + url);};
+	  document.getElementsByTagName("head")[0].appendChild(s);
+	  }
+
+	  if(typeof(LDAvis) !== "undefined"){
+	  // already loaded: just create the visualization
+	  !function(LDAvis){
+	  new LDAvis("#" + "ldavis_issue", ldavis_issue_data);
+	  }(LDAvis);
+	  }else if(typeof define === "function" && define.amd){
+	  // require.js is available: use it to load d3/LDAvis
+	  require.config({paths: {d3: "https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min"}});
+	  require(["d3"], function(d3){
+	  window.d3 = d3;
+	  LDAvis_load_lib("https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.js", function(){
+          new LDAvis("#" + "ldavis_issue", ldavis_issue_data);
+	  });
+	  });
+	  }else{
+	  // require.js not available: dynamically load d3 & LDAvis
+	  LDAvis_load_lib("https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js", function(){
+          LDAvis_load_lib("https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.js", function(){
+          new LDAvis("#" + "ldavis_issue", ldavis_issue_data);
+          })
+          });
+	  }
+	</script>
     </div>
+
+    <div id="menu3" class="tab-pane fade">
+      <h3>Complaint Narrative</h3>
+      <p> Topic Modeling Narrative <P>
+	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.css">
+
+
+	<div id="ldavis_narr"></div>
+	<script type="text/javascript">
+
+	  var ldavis_narr_data = {{ data_narrative | safe }}
+
+
+	  function LDAvis_load_lib(url, callback){
+	  var s = document.createElement('script');
+	  s.src = url;
+	  s.async = true;
+	  s.onreadystatechange = s.onload = callback;
+	  s.onerror = function(){console.warn("failed to load library " + url);};
+	  document.getElementsByTagName("head")[0].appendChild(s);
+	  }
+
+	  if(typeof(LDAvis) !== "undefined"){
+	  // already loaded: just create the visualization
+	  !function(LDAvis){
+	  new LDAvis("#" + "ldavis_narr", ldavis_narr_data);
+	  }(LDAvis);
+	  }else if(typeof define === "function" && define.amd){
+	  // require.js is available: use it to load d3/LDAvis
+	  require.config({paths: {d3: "https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min"}});
+	  require(["d3"], function(d3){
+	  window.d3 = d3;
+	  LDAvis_load_lib("https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.js", function(){
+          new LDAvis("#" + "ldavis_narr", ldavis_narr_data);
+	  });
+	  });
+	  }else{
+	  // require.js not available: dynamically load d3 & LDAvis
+	  LDAvis_load_lib("https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js", function(){
+          LDAvis_load_lib("https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.js", function(){
+          new LDAvis("#" + "ldavis_narr", ldavis_narr_data);
+          })
+          });
+	  }
+	</script>
+    </div>
+
+
   </div>
 </div>
 
 </body>
 </html>
+
 
 
 

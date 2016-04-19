@@ -80,6 +80,7 @@ def issue_analysis(df):
     vis_data = gensimvis.prepare(ldamodel, corpus, dictionary)
     #pyLDAvis.show(vis_data)
     pyLDAvis.save_html(vis_data, "issue_lda.html")
+    pyLDAvis.save_json(vis_data, "issue_lda.json")
 
     return 0
 
@@ -119,6 +120,7 @@ def narrative_analysis(df):
     vis_data = gensimvis.prepare(ldamodel, corpus, dictionary)
     #pyLDAvis.show(vis_data)
     pyLDAvis.save_html(vis_data, "narrative_lda.html")
+    pyLDAvis.save_json(vis_data, "narrative_lda.json")
 
     return 0
             

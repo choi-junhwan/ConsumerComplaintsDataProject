@@ -3,13 +3,13 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Consumer Complaint Analysis</title>
-		<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
-		<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/custom.css">
 		<link rel="stylesheet" href="css/boostrap.min.css">
-		<!--<link rel=stylesheet type=text/css href='{{ url_for('static',filename='style.css')}}'>-->
-		<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<style>
 		h1 {text-align: center;}
 		h2 {text-align: center;}
@@ -32,19 +32,18 @@
 	<body>
 	         <div>
   		  <h1>Consumer's Complaints Analysis</h1>
-		  <p1>		    
-	            <div class="jumbotron">
-		    <hr size="2" width="100%">
+		  <hr size="2" width="80%">
+		  <div class="container">
+		    <p1>		    
 		    Consumer Complaints are valuable dataset that can help to improve the business.
 		    How to resolve the complaints is an important measurement of the quality of the customer service.
 		    The contents of the complaints provide new insight how to upgrade the current products.<br>
 		    
 		    In this project, I analyze the Consumer Complaints database and perform three different analyses as follow:
-		    <br>
-		    <hr size="5" width="100%">
-		    </div>
-		 </p1>
-		</div>
+		    </p1>
+		  </div>
+		  <hr size="10" width="80%">
+		 </div>
 
 		   <h2>Choose the analysis: </h2>
 		   <div> 
@@ -62,14 +61,16 @@
 		  </form>
 		 
 		</div>
-		<hr size="5" width="100%">
-		 <p>
-		   <h2>ABOUT THE DATABASE: </h2>
-		   This Consumer Complaint Database is a collection of 548,292 complaints, on a range of consumer financial products and services, sent to nearly 3,000 companies for response, and this database continuously updated.
-		   The data includes what companies and products received complaints, what are the complaints issues and narrative, where the consumers are located, and how this complaints are treated such as "Is this complaint timely responded?", and  "Is the consumer's complaint disputed?".<br>
-		   More information visit Consumer Complaints database by <a href="http://www.consumerfinance.gov">the Consumer Financial Protection Bureau (CFPB)</a><br>
-		</p>
-
+		   <div class="container">
+		     <div class="jumbotron">		   
+		       <p>
+			 <h2>ABOUT THE DATABASE: </h2>
+			 This Consumer Complaint Database is a collection of 548,292 complaints, on a range of consumer financial products and services, sent to nearly 3,000 companies for response, and this database continuously updated.
+			 The data includes what companies and products received complaints, what are the complaints issues and narrative, where the consumers are located, and how this complaints are treated such as "Is this complaint timely responded?", and  "Is the consumer's complaint disputed?".<br>
+			 More information visit Consumer Complaints database by <a href="http://www.consumerfinance.gov">the Consumer Financial Protection Bureau (CFPB)</a><br>
+		       </p>
+		     </div>
+		   </div>
 	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	</body>

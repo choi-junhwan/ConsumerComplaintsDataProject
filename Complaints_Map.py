@@ -50,14 +50,6 @@ def generate_map(df):
     #print States_DF
     States_DF.to_csv('Complaints_State.csv', index=False)    
     
-    """
-    df_sub = df[['State']]
-    df_sub.insert(0, 'count', 1)
-    df_sub_grp = df_sub.groupby(['State']).sum().sort_index(by='count', ascending=False)
-    df_sub_grp.to_csv('Complaints_State.csv', index=True)
-    """
-
-    
     return 0
 
 def map_view():

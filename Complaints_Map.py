@@ -2,9 +2,10 @@ import csv  as csv
 import pandas as pd
 import numpy as np
 import math  as math
-from bokeh.plotting import figure, show, save, output_file
+from bokeh.plotting import figure, show, save, output_file, ColumnDataSource
 from bokeh.embed import components
 from bokeh.sampledata.us_states import data as states
+from bokeh.models import HoverTool
 
 def data_wrangling(df):
     #Data overview: contents and size
@@ -113,21 +114,55 @@ def map_view():
                  line_color="#884444", line_width=2, line_alpha=0.3)
     script_count, div_count = components(plot_count)
     """
-    
-    plot_resp = figure(title="Statewise Complaints Respond Rate", toolbar_location="left",
+    state_resp = [complaints.at[state_id,'Response'] for state_id in states]
+    state_disp = [complaints.at[state_id,'Disputed'] for state_id in states]
+    state_name = [states[state_id]["name"] for state_id in states]
+
+    # responded rate
+    source_resp = ColumnDataSource(
+        data=dict(
+            x = state_xs,
+            y = state_ys,
+            color=state_colors_resp,        
+            name=state_name,
+            rate=state_resp,
+        ))
+    hover_resp = HoverTool(
+        tooltips=[
+            ("Name", "@name"),
+            ("Rate", "@rate"), 
+        ]
+    )
+    plot_resp = figure(title="Statewise Complaints Respond Rate", tools=[hover_resp], toolbar_location="left",
                   plot_width=1100, plot_height=700)
-    plot_resp.patches(state_xs, state_ys,
-                 fill_color=state_colors_resp, fill_alpha=0.7,
-                 line_color="#884444", line_width=2, line_alpha=0.3)
+    plot_resp.patches('x', 'y', source=source_resp,
+                      fill_color='color', fill_alpha=0.7,
+                      line_color="#884444", line_width=0.3, line_alpha=0.3)
     script_resp, div_resp = components(plot_resp)
-    
-    plot_disp = figure(title="Statewise Complaints Disputed Rate", toolbar_location="left",
+
+    # disputed rate
+    source_disp = ColumnDataSource(
+        data=dict(
+            x = state_xs,
+            y = state_ys,
+            color=state_colors_disp,
+            name=state_name,
+            rate=state_disp,
+        ))
+    hover_disp = HoverTool(
+        tooltips=[
+            ("State", "@name"),
+            ("Rate", "@rate"), 
+        ]
+    )
+    plot_disp = figure(title="Statewise Complaints Disputed Rate", tools=[hover_disp], toolbar_location="left",
                   plot_width=1100, plot_height=700)
-    plot_disp.patches(state_xs, state_ys,
-                 fill_color=state_colors_disp, fill_alpha=0.7,
-                 line_color="#884444", line_width=2, line_alpha=0.3)
+    plot_disp.patches('x', 'y', source=source_disp,
+                      fill_color='color', fill_alpha=0.7,
+                      line_color="#884444", line_width=0.3, line_alpha=0.3)
     script_disp, div_disp = components(plot_disp)
 
+    # correlation
     plot_corr = figure(title="Correlation: Respond Rate vs Disputed Rate")
     plot_corr.grid.grid_line_alpha=0.3
     plot_corr.xaxis.axis_label = 'Respond Rate'

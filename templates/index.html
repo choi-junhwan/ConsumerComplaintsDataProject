@@ -27,13 +27,22 @@
 		font-family: "Times New Roman";
 		font-size: 25px;
 		}
+		.bg-1 { 
+		background-color: #1abc9c; /* Green */
+		color: #ffffff;
+		}
+		.bg-2 { 
+		background-color: #C0C0C0; /* Dark Blue */
+		color: #101010;
+		}
 		</style>
 	</head>
 	<body>
 	         <div>
   		  <h1>Consumer's Complaints Analysis</h1>
-		  <hr size="2" width="80%">
-		  <div class="container">
+		  <hr size="1" width="80%">
+		  <div class="row">
+		  <div class="container bg-1">
 		    <p1>		    
 		    Consumer Complaints are valuable dataset that can help to improve the business.
 		    How to resolve the complaints is an important measurement of the quality of the customer service.
@@ -42,36 +51,38 @@
 		    In this project, I analyze the Consumer Complaints database and perform three different analyses as follow:
 		    </p1>
 		  </div>
-		  <hr size="10" width="80%">
 		 </div>
-
-		   <h2>Choose the analysis: </h2>
-		   <div> 
-		  <form id='plot' method='post' action='index' >
-		</div>
-		<div class="center">
-		   <p>
-		      <input type="checkbox" name='key' value='Firstlook'>First Look : Overall complaints statics<br>
-		      <input type="checkbox" name='key' value='Map'>Geographical View : Where do the complaints come from? <br>
-		      <input type="checkbox" name='key' value='Text'>Text Analysis : WHAT IS THE PROBLEM!!!<br>
-		    </p>
-		    <p>
-		      <input type='submit' value='Submit' />
-		    </p>
-		  </form>
-		 
-		</div>
-		   <div class="container">
-		     <div class="jumbotron">		   
+		 <div class="container">
+		   <h2 style="font-family:Gadget, sans-serif; color:RED;">Choose the analysis: </h2>
+		 <div class="col-lg-4 col-md-offset-1  image-container">
+		  <img src="../static/complaints-button.png" alt="button" style="width:100%">
+		 </div>
+		 <div class="col-lg-6">
+		     <form id='plot' method='post' action='index' >
 		       <p>
-			 <h2>ABOUT THE DATABASE: </h2>
-			 This Consumer Complaint Database is a collection of 548,292 complaints, on a range of consumer financial products and services, sent to nearly 3,000 companies for response, and this database continuously updated (12/01/2011 - present and 12/01/2011 - 10/01/2015 in this project).
-			 The data includes what companies and products received complaints, what are the complaints issues and narrative, where the consumers are located, and how these complaints are treated such as "Is this complaint timely responded?" and  "Is the consumer's complaint disputed?"<br>
-			 More information visit Consumer Complaints database by <a href="http://www.consumerfinance.gov">the Consumer Financial Protection Bureau (CFPB)</a><br>
-			 In this project, I use following data in the analysis : the complaint products, complaint issues, customer's location (states), complaint narrative, reported date, timely responded?, and Consumer disputed?
+			 <input type="checkbox" name='key' value='Firstlook'>First Look : Overall complaints statics<br>
+			 <input type="checkbox" name='key' value='Map'>Geographical View : Where do the complaints come from? <br>
+			 <input type="checkbox" name='key' value='Text'>Text Analysis : WHAT IS THE PROBLEM!!!<br>
 		       </p>
-		     </div>
+		       <p>
+			 <input type='submit' value='Submit' />
+		       </p>
+		     </form>		 
 		   </div>
+		 </div>
+		 <hr size="1" width="80%">
+		 <div class="container bg-2">
+		     <p>
+		       <h2>ABOUT THE DATABASE: </h2>
+		       This Consumer Complaint Database is a collection of 548,292 complaints, on a range of consumer financial products and services, sent to nearly 3,000 companies for response, and this database continuously updated (12/01/2011 - present and 12/01/2011 - 10/01/2015 in this project).
+		       The data includes what companies and products received complaints, what are the complaints issues and narrative, where the consumers are located, and how these complaints are treated such as "Is this complaint timely responded?" and  "Is the consumer's complaint disputed?"<br>
+		       More information visit Consumer Complaints database by <a href="http://www.consumerfinance.gov">the Consumer Financial Protection Bureau (CFPB)</a><br>
+		       In this project, I use following data in the analysis : the complaint products, complaint issues, customer's location (states), complaint narrative, reported date, timely responded?, and Consumer disputed?
+		      </div>
+		     <div class="col-md-4 col-md-offset-8">
+		     <p1> <a href="/static/Choi_Junhwan_Resume.pdf"><button class="w3-btn w3-white w3-border w3-border-blue w3-round"> about Junhwan Choi</button></a> </p1>
+		   </div>
+		 </div>
 	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	</body>

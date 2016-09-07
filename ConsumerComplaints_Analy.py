@@ -144,7 +144,6 @@ def top_complained_issues(df):
     print '\n Top 10 most frequently complained issues'
     print df_sub_grp
 
-    xxx
     """
     df_sub = df[df['Response'] == 0]
     df_sub = df_sub[['Issue']]
@@ -385,7 +384,7 @@ if __name__=="__main__":
     print Pearson_Correlation(df[['Response','Disputed']])    
 
     #####
-    #top_complained_products(df[['Date received','Product','Response','Disputed']])
+    top_complained_products(df[['Date received','Product','Response','Disputed']])
 
     ####
     top_complained_issues(df[['Date received','Issue','Response','Disputed']])

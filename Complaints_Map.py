@@ -164,7 +164,7 @@ def map_view():
             ("p-value", "@pvalue"),
         ]
     )
-    plot_resp = figure(title="Statewise Complaints Respond Rate", tools=[hover_resp], toolbar_location="left",
+    plot_resp = figure(title="State-wise Complaints Respond Rate", tools=[hover_resp], toolbar_location="left",
                   plot_width=1100, plot_height=700)
     plot_resp.patches('x', 'y', source=source_resp,
                       fill_color='color', fill_alpha=0.7,
@@ -188,7 +188,7 @@ def map_view():
             ("p-value","@pvalue"),
         ]
     )
-    plot_disp = figure(title="Statewise Complaints Disputed Rate", tools=[hover_disp], toolbar_location="left",
+    plot_disp = figure(title="State-wise Complaints Disputed Rate", tools=[hover_disp], toolbar_location="left",
                   plot_width=1100, plot_height=700)
     plot_disp.patches('x', 'y', source=source_disp,
                       fill_color='color', fill_alpha=0.7,

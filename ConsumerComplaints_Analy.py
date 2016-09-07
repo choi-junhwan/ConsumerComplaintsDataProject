@@ -132,16 +132,19 @@ def top_complained_issues(df):
     """
     df_sub = df[['Issue']]
     df_sub.insert(0, 'count', 1)
-    df_sub_grp = df_sub.groupby(['Issue']).sum().sort_index(by='count', ascending=False).ix[0:25]
 
-    df_sub_grp.plot(kind='barh', rot=0, fontsize=2,  title="Most Complained Issues")
+    df_sub_grp = df_sub.groupby(['Issue']).sum().sort_index(by='count', ascending=False).ix[0:5]
+    df_sub_grp.plot(kind='barh', rot=65, fontsize=7,  title="Most Complained Issues")
     fig = plt.gcf()
     fig.savefig('bar_top_issues.png')    
     pl.clf()   
 
-    #print '\n Top 10 most frequently complained issues'
-    #print df_sub_grp
+    df_sub_grp = df_sub.groupby(['Issue']).sum().sort_index(by='count', ascending=False).ix[0:25]
 
+    print '\n Top 10 most frequently complained issues'
+    print df_sub_grp
+
+    xxx
     """
     df_sub = df[df['Response'] == 0]
     df_sub = df_sub[['Issue']]
@@ -375,13 +378,14 @@ def text_analysis(df):
 
 if __name__=="__main__":
     df = pd.read_csv('../Data/Consumer_Complaints.csv', header=0)
+    #df = pd.read_csv('../Data/Consumer_Complaints_short.csv', header=0)
     df = data_wrangling(df)
 
     ##### Pearson Correaltion betwen two features
     print Pearson_Correlation(df[['Response','Disputed']])    
 
     #####
-    top_complained_products(df[['Date received','Product','Response','Disputed']])
+    #top_complained_products(df[['Date received','Product','Response','Disputed']])
 
     ####
     top_complained_issues(df[['Date received','Issue','Response','Disputed']])

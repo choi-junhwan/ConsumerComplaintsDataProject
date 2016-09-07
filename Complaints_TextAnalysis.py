@@ -63,7 +63,8 @@ def issue_analysis(df):
     fig1.set_title("Top issued words", fontdict={'fontsize':25})
     fig1.imshow(wordcloud)
     fig1.axis("off")
-    plt.savefig('ComplainCount_WC.png')
+    #plt.savefig('ComplainCount_WC.png')
+    plt.savefig('ComplainCount_WC_2016.png')
     
     # turn our tokenized documents into a id <-> term dictionary
     dictionary = corpora.Dictionary(texts)
@@ -79,8 +80,10 @@ def issue_analysis(df):
        
     vis_data = gensimvis.prepare(ldamodel, corpus, dictionary)
     #pyLDAvis.show(vis_data)
-    pyLDAvis.save_html(vis_data, "issue_lda.html")
-    pyLDAvis.save_json(vis_data, "issue_lda.json")
+    #pyLDAvis.save_html(vis_data, "issue_lda.html")
+    #pyLDAvis.save_json(vis_data, "issue_lda.json")
+    pyLDAvis.save_html(vis_data, "issue_lda_2016.html")
+    pyLDAvis.save_json(vis_data, "issue_lda_2016.json")
 
     return 0
 
@@ -119,8 +122,10 @@ def narrative_analysis(df):
        
     vis_data = gensimvis.prepare(ldamodel, corpus, dictionary)
     #pyLDAvis.show(vis_data)
-    pyLDAvis.save_html(vis_data, "narrative_lda.html")
-    pyLDAvis.save_json(vis_data, "narrative_lda.json")
+    #pyLDAvis.save_html(vis_data, "narrative_lda.html")
+    #pyLDAvis.save_json(vis_data, "narrative_lda.json")
+    pyLDAvis.save_html(vis_data, "narrative_lda_2016.html")
+    pyLDAvis.save_json(vis_data, "narrative_lda_2016.json")
 
     return 0
             
@@ -129,7 +134,8 @@ def narrative_analysis(df):
 if __name__=="__main__":
     
     # https://data.consumerfinance.gov/resource/jhzv-w97w.json
-    df = pd.read_csv('../Data/Consumer_Complaints.csv', header=0)
+    #df = pd.read_csv('../Data/Consumer_Complaints.csv', header=0)
+    df = pd.read_csv('../Data/Consumer_Complaints_2016.csv', header=0)
     df = data_wrangling(df)
     issue_analysis(df)
 

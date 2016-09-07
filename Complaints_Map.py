@@ -21,6 +21,14 @@ def data_wrangling(df):
     
     return df
                                     
+def pvalue(rate, n, p):
+    import scipy.stats
+    k = rate*n
+    if rate > p:
+        return (1-scipy.stats.binom.cdf(k,n,p))
+    else:
+        return scipy.stats.binom.cdf(k,n,p)
+
 def generate_map(df):
     """
     sort Complaint response and disputed rate for each state
@@ -48,10 +56,29 @@ def generate_map(df):
                               'Response' : n_resp/n_count,
                               'Disputed' : n_disp/n_count})
 
-    #print States_DF
+    # total count
+    total = States_DF['count'].sum()
+
+    # resp_rate
+    States_DF['resp_count'] = States_DF.apply(lambda row: row['Response']*row['count'], axis=1)
+    total_resp = States_DF['resp_count'].sum()
+    resp_rate = total_resp/total
+
+    # disp_rate
+    States_DF['disp_count'] = States_DF.apply(lambda row: row['Disputed']*row['count'], axis=1)
+    total_disp = States_DF['disp_count'].sum()
+    disp_rate = total_disp/total
+
+
+        
+    States_DF['resp_pvalue'] = States_DF.apply(lambda row: pvalue(row['Response'],row['count'],resp_rate), axis=1)
+    States_DF['disp_pvalue'] = States_DF.apply(lambda row: pvalue(row['Disputed'],row['count'],disp_rate), axis=1)
+
+    States_DF = States_DF.drop(States_DF.columns[[4, 5]], axis=1)
+
     States_DF.to_csv('Complaints_State.csv', index=False)    
-    
     return 0
+
 
 def map_view():
     try:
@@ -116,6 +143,8 @@ def map_view():
     """
     state_resp = [complaints.at[state_id,'Response'] for state_id in states]
     state_disp = [complaints.at[state_id,'Disputed'] for state_id in states]
+    state_rp   = [complaints.at[state_id,'resp_pvalue'] for state_id in states]
+    state_dp   = [complaints.at[state_id,'disp_pvalue'] for state_id in states]
     state_name = [states[state_id]["name"] for state_id in states]
 
     # responded rate
@@ -126,11 +155,13 @@ def map_view():
             color=state_colors_resp,        
             name=state_name,
             rate=state_resp,
+            pvalue=state_rp, 
         ))
     hover_resp = HoverTool(
         tooltips=[
             ("Name", "@name"),
-            ("Rate", "@rate"), 
+            ("Rate", "@rate"),
+            ("p-value", "@pvalue"),
         ]
     )
     plot_resp = figure(title="Statewise Complaints Respond Rate", tools=[hover_resp], toolbar_location="left",
@@ -148,11 +179,13 @@ def map_view():
             color=state_colors_disp,
             name=state_name,
             rate=state_disp,
+            pvalue=state_dp,
         ))
     hover_disp = HoverTool(
         tooltips=[
             ("State", "@name"),
-            ("Rate", "@rate"), 
+            ("Rate", "@rate"),
+            ("p-value","@pvalue"),
         ]
     )
     plot_disp = figure(title="Statewise Complaints Disputed Rate", tools=[hover_disp], toolbar_location="left",
@@ -176,7 +209,7 @@ def map_view():
     return script_resp, div_resp, script_disp, div_disp, script_corr, div_corr 
 
 if __name__=="__main__":
-    #df = pd.read_csv('../Data/Consumer_Complaints.csv', header=0)
-    #df = data_wrangling(df)
-    #df = generate_map(df)
-    map_view()
+    df = pd.read_csv('../Data/Consumer_Complaints.csv', header=0)
+    df = data_wrangling(df)
+    df = generate_map(df)
+    #map_view()
